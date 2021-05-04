@@ -1,0 +1,50 @@
+class Category:
+    
+    def __init__(self, category, amount): 
+        self.category = category
+        self.amount = amount
+    
+
+    def deposit(self, amount):
+        self.amount += amount
+        return "You have successfully deposited {} in {} category".format(amount, self.category)
+
+    
+    def balance(self):
+        return "This is the current balance: {}".format(self.amount)
+
+    
+    def check_balance(self, amount):
+        if self.amount > amount:
+            return True
+        else:
+            return False
+
+    
+    def withdraw(self, amount):
+        self.amount -= amount
+        return "You have successfully deposited {} in {} category".format(amount, self.category)
+
+
+    def transfer(self, amount, catergory):
+        
+        if not self.check_balance(amount):
+            return "Transfer not successful"
+        
+        self.amount -= amount
+        catergory.amount += amount
+        return "You have transferred {} to {} category".format(amount, catergory.category)
+
+
+
+food_category = Category("Food", 20000)
+clothing_category = Category("Clothing", 50000)
+entertainment_category = Category("Entertainment", 150000)
+
+print(food_category.deposit(20000))
+print(food_category.balance())
+print(food_category.transfer(13000, clothing_category))
+print(food_category.balance())
+print(clothing_category.balance())
+print(entertainment_category.deposit(35000))
+print(entertainment_category.balance())
